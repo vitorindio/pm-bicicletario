@@ -1,0 +1,1 @@
+chmod +x /home/ec2-user/app.jar
