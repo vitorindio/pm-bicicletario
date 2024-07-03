@@ -1,1 +1,1 @@
-chmod +x /home/ec2-user/app.jar
+chmod +x /home/ec2-user/bicicletario-0.0.1-SNAPSHOT.jar

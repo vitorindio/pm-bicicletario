@@ -1,1 +1,1 @@
-sudo systemctl start spring-boot-app.service
+sudo systemctl restart spring-boot-app.service
