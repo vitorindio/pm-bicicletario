@@ -5,7 +5,7 @@ on:
     branches:
       - main
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [ opened, synchronize, reopened ]
 
 jobs:
   build-and-deploy:
@@ -46,8 +46,8 @@ jobs:
 
       - name: Debug Secrets
         run: |
-          echo "SONAR_PROJECT_KEY is set"
-          echo "SONAR_ORGANIZATION is set"
+          echo "SONAR_PROJECT_KEY=${{ secrets.SONAR_PROJECT_KEY }}"
+          echo "SONAR_ORGANIZATION=${{ secrets.SONAR_ORGANIZATION }}"
         env:
           SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
           SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
@@ -56,15 +56,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
         run: |
-          echo "Running SonarCloud scan with project key: $SONAR_PROJECT_KEY and organization: $SONAR_ORGANIZATION"
           mvn sonar:sonar \
-            -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-            -Dsonar.organization=$SONAR_ORGANIZATION \
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
             -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=$SONAR_TOKEN \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
       - name: Set up AWS CLI
