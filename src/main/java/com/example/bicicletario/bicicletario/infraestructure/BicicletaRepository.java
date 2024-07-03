@@ -8,9 +8,6 @@ import java.util.List;
 @Repository
 public class BicicletaRepository {
 
-    public List<Bicicleta> listarBicicletas() {
-        return null;
-    }
 
     public Bicicleta criarBicicleta(Bicicleta bicicleta) {
         bicicleta.setId(1);
@@ -19,16 +16,9 @@ public class BicicletaRepository {
         bicicleta.setAno(bicicleta.getAno());
         bicicleta.setNumero(bicicleta.getNumero());
         bicicleta.setStatus(bicicleta.getStatus());
-
         return bicicleta;
     }
 
-    public void salvarBicicleta(Bicicleta bicicleta) {
-
-    }
-
-    public void deletarBicicleta(int id) {
-    }
 
 
 }

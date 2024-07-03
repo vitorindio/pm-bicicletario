@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("/api")
 public class BicicletaController {
 
-
     private final BicicletaService bicicletaService;
 
     public BicicletaController(BicicletaService bicicletaService) {
@@ -29,7 +28,6 @@ public class BicicletaController {
 
     @PostMapping("/bicicletas")
     public Bicicleta criarBicicleta(Bicicleta bicicleta) {
-
         return bicicletaService.criarBicicleta(bicicleta);
     }
 

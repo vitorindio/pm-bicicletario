@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BicicletaTest {
+class BicicletaTest {
 
     @Test
-    public void testGettersAndSetters() {
+    void testGettersAndSetters() {
         Bicicleta bicicleta = new Bicicleta();
 
         bicicleta.setId(1);
@@ -32,7 +32,7 @@ public class BicicletaTest {
     }
 
     @Test
-    public void testConstructorWithArgs() {
+    void testConstructorWithArgs() {
         Bicicleta bicicleta = new Bicicleta("Caloi", "Mountain Bike", "2021", 123, Status.DISPONIVEL);
 
         assertEquals("Caloi", bicicleta.getMarca());
@@ -43,9 +43,8 @@ public class BicicletaTest {
     }
 
     @Test
-    public void testDefaultConstructor() {
+    void testDefaultConstructor() {
         Bicicleta bicicleta = new Bicicleta();
-
         assertNull(bicicleta.getMarca());
         assertNull(bicicleta.getModelo());
         assertNull(bicicleta.getAno());
@@ -63,13 +62,4 @@ public class BicicletaTest {
         assertEquals(Status.DISPONIVEL, bicicleta.getStatus());
     }
 
-    @Test
-    void shouldReturnBicicletaEmpty() {
-        Bicicleta bicicleta = new Bicicleta();
-        assertNull(bicicleta.getMarca());
-        assertNull(bicicleta.getModelo());
-        assertNull(bicicleta.getAno());
-        assertEquals(0, bicicleta.getNumero());
-        assertNull(bicicleta.getStatus());
-    }
 }
