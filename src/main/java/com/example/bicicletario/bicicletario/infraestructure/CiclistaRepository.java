@@ -1,21 +1,11 @@
 package com.example.bicicletario.bicicletario.infraestructure;
 
-import org.springframework.stereotype.Repository;
+import com.example.bicicletario.bicicletario.domain.Ciclista;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class CiclistaRepository {
+import java.util.Optional;
 
-
-    public Bicicleta criarBicicleta(Bicicleta bicicleta) {
-        bicicleta.setId(1);
-        bicicleta.setMarca(bicicleta.getMarca());
-        bicicleta.setModelo(bicicleta.getModelo());
-        bicicleta.setAno(bicicleta.getAno());
-        bicicleta.setNumero(bicicleta.getNumero());
-        bicicleta.setStatus(bicicleta.getStatus());
-        return bicicleta;
-    }
-
-
-
+public interface CiclistaRepository extends JpaRepository<Ciclista, Long> {
+    Optional<Ciclista> findById(int id);
+    boolean existsByEmail(String email);
 }

@@ -1,16 +1,17 @@
 package com.example.bicicletario.bicicletario.web;
 
 import com.example.bicicletario.bicicletario.application.CiclistaService;
-import com.example.bicicletario.bicicletario.domain.enums.StatusCiclista;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.bicicletario.bicicletario.domain.dto.BicicletaDTO;
+import com.example.bicicletario.bicicletario.domain.dto.NovoCiclistaDTO;
+import com.example.bicicletario.bicicletario.domain.dto.CiclistaDTO;
+import com.example.bicicletario.bicicletario.domain.dto.NovoCartaoDeCreditoDTO;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/ciclista")
 public class CiclistaController {
 
     private final CiclistaService ciclistaService;
@@ -19,18 +20,47 @@ public class CiclistaController {
         this.ciclistaService = ciclistaService;
     }
 
-    @GetMapping("/bicicletas")
-    public List<Bicicleta> listarBicicletas() {
-        return List.of(new Bicicleta("marca", "modelo", "2021", 1, StatusCiclista.DISPONIVEL));
-
+    @PostMapping
+    public ResponseEntity<CiclistaDTO> cadastrarCiclista(@RequestBody NovoCiclistaDTO novoCiclistaDTO) {
+        CiclistaDTO ciclista = ciclistaService.cadastrarCiclista(novoCiclistaDTO);
+        return ResponseEntity.status(201).body(ciclista);
     }
 
-    @PostMapping("/bicicletas")
-    public Bicicleta criarBicicleta(Bicicleta bicicleta) {
-        return ciclistaService.criarBicicleta(bicicleta);
+    @GetMapping("/{idCiclista}")
+    public ResponseEntity<CiclistaDTO> obterCiclista(@PathVariable Long idCiclista) {
+        Optional<CiclistaDTO> ciclista = ciclistaService.obterCiclista(idCiclista);
+        return ciclista.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(404).build());
     }
 
+    @PutMapping("/{idCiclista}")
+    public ResponseEntity<CiclistaDTO> alterarCiclista(@PathVariable Long idCiclista, @RequestBody NovoCiclistaDTO novoCiclistaDTO) {
+        CiclistaDTO ciclista = ciclistaService.alterarCiclista(idCiclista, novoCiclistaDTO);
+        return ResponseEntity.ok(ciclista);
+    }
+
+    @PostMapping("/{idCiclista}/ativar")
+    public ResponseEntity<CiclistaDTO> ativarCiclista(@PathVariable Long idCiclista) {
+        CiclistaDTO ciclista = ciclistaService.ativarCiclista(idCiclista);
+        return ResponseEntity.ok(ciclista);
+    }
+
+    @GetMapping("/{idCiclista}/permiteAluguel")
+    public ResponseEntity<Boolean> permiteAluguel(@PathVariable Long idCiclista) {
+        boolean permite = ciclistaService.permiteAluguel(idCiclista);
+        return ResponseEntity.ok(permite);
+    }
+
+    @GetMapping("/{idCiclista}/bicicletaAlugada")
+    public ResponseEntity<CiclistaDTO> obterBicicletaAlugada(@PathVariable Long idCiclista) {
+        Optional<CiclistaDTO> bicicleta = ciclistaService.obterBicicletaAlugada(idCiclista);
+        return bicicleta.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(404).build());
+    }
+
+    @GetMapping("/existeEmail/{email}")
+    public ResponseEntity<Boolean> existeEmail(@PathVariable String email) {
+        boolean existe = ciclistaService.existeEmail(email);
+        return ResponseEntity.ok(existe);
+    }
 }
-
-
-

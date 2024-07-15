@@ -1,56 +1,17 @@
-package com.example.bicicletario.bicicletario.domain;
+package com.example.bicicletario.bicicletario.domain.dto;
 
-import jakarta.persistence.*;
+public class FuncionarioDTO {
 
-@Entity
-@Table(name = "funcionario")
-public class Funcionario {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "matricula")
+    private String senha;
+    private String confirmacaoSenha;
+    private String email;
+    private String nome;
+    private int idade;
+    private String funcao;
+    private String cpf;
     private String matricula;
 
-    @Column(name = "senha")
-    private String senha;
-
-    @Column(name = "confirmacao_senha")
-    private String confirmacaoSenha;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "nome")
-    private String nome;
-
-    @Column(name = "idade")
-    private int idade;
-
-    @Column(name = "funcao")
-    private String funcao;
-
-    @Column(name = "cpf")
-    private String cpf;
-
     // Getters e Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
 
     public String getSenha() {
         return senha;
@@ -106,5 +67,13 @@ public class Funcionario {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 }

@@ -1,74 +1,61 @@
 package com.example.bicicletario.bicicletario.domain;
 
-import com.example.bicicletario.bicicletario.domain.enums.StatusCiclista;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "ciclista")
+@Table(name = "passaporte")
 public class Passaporte {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    private Long id;
 
-    @Column(name = "modelo")
-    public String nome;
+    @Column(name = "numero")
+    private String numero;
 
-    @Column(name = "ano")
-    public String dataNascimento;
+    @Column(name = "validade")
+    private LocalDate validade;
 
-    @Column(name = "status")
-    public StatusCiclista status;
+    @Column(name = "pais")
+    private String pais;
 
-    @JoinColumn(name = "passaporte_id")
-    @OneToOne
-    public Passaporte cpf;
+    // Getters and Setters
 
-    @Column(name = "email")
-    public String email;
-
-    @Column(name = "url_foto_documento")
-    public String urlFotoDocumento;
-
-
-    public String getNome() {
-        return nome;
+    public Long getId() {
+        return id;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getDataNascimento() {
-        return dataNascimento;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public StatusCiclista getStatus() {
-        return status;
+    public LocalDate getValidade() {
+        return validade;
     }
 
-    public void setStatus(StatusCiclista status) {
-        this.status = status;
+    public void setValidade(LocalDate validade) {
+        this.validade = validade;
     }
 
-    public Passaporte getCpf() {
-        return cpf;
+    public String getPais() {
+        return pais;
     }
 
-    public void setCpf(Passaporte cpf) {
-        this.cpf = cpf;
+    public void setPais(String pais) {
+        this.pais = pais;
     }
-
-
 }

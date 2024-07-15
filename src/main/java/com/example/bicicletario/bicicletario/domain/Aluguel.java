@@ -1,74 +1,104 @@
 package com.example.bicicletario.bicicletario.domain;
 
-import com.example.bicicletario.bicicletario.domain.enums.StatusCiclista;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+
 @Entity
-@Table(name = "ciclista")
+@Table(name = "aluguel")
 public class Aluguel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    private int id;
 
-    @Column(name = "modelo")
-    public String nome;
+    @Column(name = "bicicleta")
+    private Integer bicicleta;
 
-    @Column(name = "ano")
-    public String dataNascimento;
+    @Column(name = "hora_inicio")
+    private String horaInicio;
 
-    @Column(name = "status")
-    public StatusCiclista status;
+    @Column(name = "tranca_fim")
+    private Integer trancaFim;
 
-    @JoinColumn(name = "passaporte_id")
-    @OneToOne
-    public Aluguel cpf;
+    @Column(name = "hora_fim")
+    private String horaFim;
 
-    @Column(name = "email")
-    public String email;
+    @Column(name = "cobranca")
+    private Integer cobranca;
 
-    @Column(name = "url_foto_documento")
-    public String urlFotoDocumento;
+    @Column(name = "ciclista")
+    private Integer ciclista;
 
+    @Column(name = "tranca_inicio")
+    private Integer trancaInicio;
 
-    public String getNome() {
-        return nome;
+    // Getters and Setters
+    public int getId() {
+        return id;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getDataNascimento() {
-        return dataNascimento;
+    public Integer getBicicleta() {
+        return bicicleta;
     }
 
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setBicicleta(Integer bicicleta) {
+        this.bicicleta = bicicleta;
     }
 
-    public StatusCiclista getStatus() {
-        return status;
+    public String getHoraInicio() {
+        return horaInicio;
     }
 
-    public void setStatus(StatusCiclista status) {
-        this.status = status;
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
     }
 
-    public Aluguel getCpf() {
-        return cpf;
+    public Integer getTrancaFim() {
+        return trancaFim;
     }
 
-    public void setCpf(Aluguel cpf) {
-        this.cpf = cpf;
+    public void setTrancaFim(Integer trancaFim) {
+        this.trancaFim = trancaFim;
     }
 
+    public String getHoraFim() {
+        return horaFim;
+    }
 
+    public void setHoraFim(String horaFim) {
+        this.horaFim = horaFim;
+    }
+
+    public Integer getCobranca() {
+        return cobranca;
+    }
+
+    public void setCobranca(Integer cobranca) {
+        this.cobranca = cobranca;
+    }
+
+    public Integer getCiclista() {
+        return ciclista;
+    }
+
+    public void setCiclista(Integer ciclista) {
+        this.ciclista = ciclista;
+    }
+
+    public Integer getTrancaInicio() {
+        return trancaInicio;
+    }
+
+    public void setTrancaInicio(Integer trancaInicio) {
+        this.trancaInicio = trancaInicio;
+    }
 }

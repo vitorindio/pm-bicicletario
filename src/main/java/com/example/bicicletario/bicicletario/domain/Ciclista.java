@@ -2,8 +2,10 @@ package com.example.bicicletario.bicicletario.domain;
 
 import com.example.bicicletario.bicicletario.domain.enums.Nacionalidade;
 import com.example.bicicletario.bicicletario.domain.enums.StatusCiclista;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,22 +20,36 @@ public class Ciclista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    @Column(name = "numero")
-    public String numero;
+    @Column(name = "nome")
+    private String nome;
 
-    @Column(name = "validade")
-    public String validade;
+    @Column(name = "email")
+    private String email;
 
-    @Column(name = "pais")
-    public String pais;
+    @Column(name = "cpf")
+    private String cpf;
 
-    @Column(name = "status")
-    public StatusCiclista statusCiclista;
+    @Column(name = "data_nascimento")
+    private String dataNascimento;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "nacionalidade")
-    public Nacionalidade nacionalidade;
+    private Nacionalidade nacionalidade;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "passaporte_id", referencedColumnName = "id")
+    private Passaporte passaporte;
+
+    @Column(name = "url_foto_documento")
+    private String urlFotoDocumento;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private StatusCiclista statusCiclista;
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -43,28 +59,60 @@ public class Ciclista {
         this.id = id;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getValidade() {
-        return validade;
+    public String getEmail() {
+        return email;
     }
 
-    public void setValidade(String validade) {
-        this.validade = validade;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getPais() {
-        return pais;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public Nacionalidade getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(Nacionalidade nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+    public Passaporte getPassaporte() {
+        return passaporte;
+    }
+
+    public void setPassaporte(Passaporte passaporte) {
+        this.passaporte = passaporte;
+    }
+
+    public String getUrlFotoDocumento() {
+        return urlFotoDocumento;
+    }
+
+    public void setUrlFotoDocumento(String urlFotoDocumento) {
+        this.urlFotoDocumento = urlFotoDocumento;
     }
 
     public StatusCiclista getStatusCiclista() {

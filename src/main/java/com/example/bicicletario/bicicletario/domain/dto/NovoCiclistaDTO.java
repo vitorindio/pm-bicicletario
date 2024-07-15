@@ -1,21 +1,17 @@
 package com.example.bicicletario.bicicletario.domain.dto;
 
-public class NovoCartaoDeCreditoDto {
+public class NovoCiclistaDTO {
     private String nome;
     private String email;
     private String cpf;
     private String dataNascimento;
     private String nacionalidade;
+    private PassaporteDTO passaporte;
+    private String urlFotoDocumento;
+    private String senha;
+    private String confirmacaoSenha;
 
-    public NovoCartaoDeCreditoDto(String nome, String email, String cpf, String dataNascimento, String nacionalidade, Long passaporte, String urlFotoDocumento) {
-        this.nome = nome;
-        this.email = email;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.nacionalidade = nacionalidade;
-        this.passaporte = passaporte;
-        this.urlFotoDocumento = urlFotoDocumento;
-    }
+    // getters and setters
 
     public String getNome() {
         return nome;
@@ -57,11 +53,11 @@ public class NovoCartaoDeCreditoDto {
         this.nacionalidade = nacionalidade;
     }
 
-    public Long getPassaporte() {
+    public PassaporteDTO getPassaporte() {
         return passaporte;
     }
 
-    public void setPassaporte(Long passaporte) {
+    public void setPassaporte(PassaporteDTO passaporte) {
         this.passaporte = passaporte;
     }
 
@@ -71,5 +67,21 @@ public class NovoCartaoDeCreditoDto {
 
     public void setUrlFotoDocumento(String urlFotoDocumento) {
         this.urlFotoDocumento = urlFotoDocumento;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getConfirmacaoSenha() {
+        return confirmacaoSenha;
+    }
+
+    public void setConfirmacaoSenha(String confirmacaoSenha) {
+        this.confirmacaoSenha = confirmacaoSenha;
     }
 }
